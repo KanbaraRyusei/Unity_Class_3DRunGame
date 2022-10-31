@@ -2,6 +2,7 @@
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
+using System.Threading.Tasks;
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
@@ -170,8 +171,28 @@ namespace StarterAssets
         {
             if (other.TryGetComponent(out IGetItem getItem))
             {
-                getItem.GetItem();
+                getItem.GetItem(() => ItemEffect(getItem.GetType()));
             }
+        }
+
+        private void ItemEffect(ItemEffectType type)
+        {
+            switch(type)
+            {
+                case ItemEffectType.SpeedUp:
+                    SpeedUp();
+                    break;
+                case ItemEffectType.AddTime:
+                    TimeManager.Instence.AddTimeLimit(3);// TODO リファクタリングする
+                    break;
+            }
+        }
+
+        private async void SpeedUp()// TODO リファクタリングする
+        {
+            _speed += 2;
+            await Task.Delay(3000);
+            _speed -= 2;
         }
 
         private void AssignAnimationIDs()

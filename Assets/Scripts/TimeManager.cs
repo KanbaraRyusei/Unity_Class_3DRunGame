@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    public TimeManager Instance { get; private set; }
-
+    public static TimeManager Instence { get; private set; }
     public float Timer => _timer;
+
+    public bool IsStopTimer => _isStopTimer;
+
+    public int TimeLimit => _timeLimit;
+
+    [SerializeField]
+    private int _timeLimit = 0;
 
     private float _timer = 0f;
 
@@ -17,6 +23,10 @@ public class TimeManager : MonoBehaviour
     private void Update()
     {
         if (_isStopTimer) return;
+        if(_timer > _timeLimit)
+        {
+            GameManager.GameOver();
+        }
         _timer += Time.deltaTime;
     }
 
@@ -43,5 +53,15 @@ public class TimeManager : MonoBehaviour
         _isStopTimer = true;
         _timer = 0f;
         _oldTime = 0f;
+    }
+
+    public void SetTimeLimit(int limit)
+    {
+        _timeLimit = limit;
+    }
+
+    public void AddTimeLimit(int addTime)
+    {
+        _timeLimit += addTime;
     }
 }

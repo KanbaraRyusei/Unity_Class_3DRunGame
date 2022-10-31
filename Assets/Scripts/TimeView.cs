@@ -8,13 +8,13 @@ public class TimeView : MonoBehaviour
     [SerializeField]
     Slider _slider;
 
-    public void SetMaxValue(float value)
+    public void SetMaxValue(int value)
     {
         _slider.maxValue = value;
     }
 
     public void ChangeValue(float value)
     {
-        _slider.value = value;
+        _slider.value = _slider.maxValue - value;
     }
 }
