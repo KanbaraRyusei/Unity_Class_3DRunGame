@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class SpeedUpItem : MonoBehaviour, IGetItem
+public class Item : MonoBehaviour, IGetItem
 {
     [SerializeField]
-    private int _point;
+    private int _point = 1;
 
     [SerializeField]
     private ItemEffectType _type;
@@ -15,6 +15,7 @@ public class SpeedUpItem : MonoBehaviour, IGetItem
     {
         CollectItemManager.Instance.AddItem(_point);
         action?.Invoke();
+        Destroy(gameObject);
     }
 
     ItemEffectType IGetItem.GetType()

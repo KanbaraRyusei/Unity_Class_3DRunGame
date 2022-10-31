@@ -17,6 +17,7 @@ public static class GameManager
         IsGameClear = false;
         IsGameOver = false;
         OnGameStart?.Invoke();
+        Debug.Log("GameStart");
     }
 
     public static void GameClear()
@@ -24,6 +25,7 @@ public static class GameManager
         IsGameClear = true;
         IsGameOver = false;
         OnGameClear?.Invoke();
+        Debug.Log("GameClear");
 
     }
 
@@ -32,5 +34,6 @@ public static class GameManager
         IsGameClear = false;
         IsGameOver = true;
         OnGameOver?.Invoke();
+        Debug.Log("GameOver");
     }
 }

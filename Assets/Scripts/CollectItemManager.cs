@@ -13,6 +13,11 @@ public class CollectItemManager : MonoBehaviour
 
     private int _itemCount = 0;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public void AddItem(int count)
     {
         _itemCount += count;

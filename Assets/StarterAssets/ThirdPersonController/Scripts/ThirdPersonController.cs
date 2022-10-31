@@ -173,6 +173,10 @@ namespace StarterAssets
             {
                 getItem.GetItem(() => ItemEffect(getItem.GetType()));
             }
+            if(other.tag == "Finish")
+            {
+                GameManager.GameOver();
+            }
         }
 
         private void ItemEffect(ItemEffectType type)
@@ -190,9 +194,13 @@ namespace StarterAssets
 
         private async void SpeedUp()// TODO リファクタリングする
         {
-            _speed += 2;
+            MoveSpeed += 10;
+            SprintSpeed += 10;
+            Debug.Log("SpeedUp");
             await Task.Delay(3000);
-            _speed -= 2;
+            MoveSpeed -= 10;
+            SprintSpeed -= 10;
+            Debug.Log("SpeedDown");
         }
 
         private void AssignAnimationIDs()

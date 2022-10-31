@@ -20,6 +20,11 @@ public class TimeManager : MonoBehaviour
 
     private bool _isStopTimer = true;
 
+    private void Awake()
+    {
+        Instence = this;
+    }
+
     private void Update()
     {
         if (_isStopTimer) return;
